@@ -10,3 +10,6 @@ spring:
 logging:
   pattern:
     console: "${LOGPATTERN_CONSOLE:%clr(%d{HH:mm:ss.SSS}){green} %clr(%5level){blue} %clr([%15.15t]){red} %clr(%-15.15logger{15}){yellow} : %msg%n}"
+
+  level:
+    org.springframework.security: ${SPRING_SECURITY_LOG_LEVEL:TRACE}
