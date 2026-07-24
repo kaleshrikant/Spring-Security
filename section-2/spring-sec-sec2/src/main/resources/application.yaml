@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: ${SPRING_APP_NAME:spring-sec-sec1}
+
+  security:
+    user:
+      name: ${SECURITY_USERNAME:shrikant}
+      password: ${SECURITY_PASSWORD:kale}
+
+logging:
+  pattern:
+    console: "${LOGPATTERN_CONSOLE:%clr(%d{HH:mm:ss.SSS}){green} %clr(%5level){blue} %clr([%15.15t]){red} %clr(%-15.15logger{15}){yellow} : %msg%n}"
+
+  level:
+    org.springframework.security: ${SPRING_SECURITY_LOG_LEVEL:TRACE}
