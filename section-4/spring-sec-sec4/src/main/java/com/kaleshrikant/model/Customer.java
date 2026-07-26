@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	private String email;
 	private String pwd;
 
