@@ -1,5 +1,6 @@
 package com.kaleshrikant.config;
 
+import com.kaleshrikant.exceptionhandeling.CustomBasicAuthenicationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -29,7 +30,7 @@ public class ProjectSecurityConfig {
 				.requestMatchers("/myAccount", "/myBalance","/myLoan","/myCards").authenticated()
 				.requestMatchers("/notices","/contact","/error","/register").permitAll());
 		http.formLogin(withDefaults());
-		http.httpBasic(withDefaults());
+		http.httpBasic(hbc -> hbc.authenticationEntryPoint(new CustomBasicAuthenicationEntryPoint()));
 		return http.build();
 	}
 
