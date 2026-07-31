@@ -23,7 +23,8 @@ public class ProjectSecurityProdConfig {
 
 	@Bean
 	SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) {
-		http.csrf(csrfProtection -> csrfProtection.disable()) // disabling the csrf for idempotent methods
+		http.requiresChannel(rcc -> rcc.anyRequest().requiresSecure()) // forcing HTTPS only !
+				.csrf(csrfProtection -> csrfProtection.disable()) // disabling the csrf for idempotent methods
 				.authorizeHttpRequests((requests) -> requests
 				.requestMatchers("/myAccount", "/myBalance","/myLoan","/myCards").authenticated()
 				.requestMatchers("/notices","/contact","/error","/register").permitAll());
