@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: ${SPRING_APP_NAME:spring-sec-sec6}
+
+  datasource:
+    url: jdbc:mysql://${DATABASE_HOST:localhost}:${DATABASE_PORT:3306}/${DATABASE_NAME:eazybank}
+    username: ${DATABASE_USERNAME:shrikant}
+    password: ${DATABASE_PASSWORD:kale}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    jpa:
+      show-sql: ${JPA_SHOW_SQL:true}
+      properties:
+        hibernate:
+          format_sql: ${HIBERNATE_FORMAT_SQL:true}
+logging:
+  pattern:
+    console: "${LOGPATTERN_CONSOLE:%clr(%d{HH:mm:ss.SSS}){green} %clr(%5level){blue} %clr([%15.15t]){red} %clr(%-15.15logger{15}){yellow} : %msg%n}"
+
+  level:
+    org.springframework.security: ${SPRING_SECURITY_LOG_LEVEL:TRACE}
