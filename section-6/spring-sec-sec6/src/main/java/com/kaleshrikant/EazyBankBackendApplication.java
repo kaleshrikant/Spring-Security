@@ -11,3 +11,5 @@ public class EazyBankBackendApplication {
 	}
 
 }
+ // -Dspring.profiles.active=default : IntelliJ
+//  SPRING_PROFILES_ACTIVE=default : Using environment variable
