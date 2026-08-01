@@ -26,11 +26,11 @@ public class ProjectSecurityConfig {
 	@Bean
 	SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) {
 		http/*.requiresChannel(rcc -> rcc.anyRequest().requiresInsecure())  // forcing HTTP only ! */
-				.sessionManagement(smc -> smc.invalidSessionUrl("/invalidSession")) // will redirect to '/invalidSession' after timeout
+				.sessionManagement(smc -> smc.invalidSessionUrl("/invalidSession").maximumSessions(3).maxSessionsPreventsLogin(true)/*.expiredUrl("/exporedUrl")*/) // will redirect to '/invalidSession' after timeout
 				.csrf(csrfProtection -> csrfProtection.disable()) // disabling the csrf for idempotent methods
 				.authorizeHttpRequests((requests) -> requests
 				.requestMatchers("/myAccount", "/myBalance","/myLoan","/myCards").authenticated()
-				.requestMatchers("/notices","/contact","/error","/register", "/invalidSession").permitAll());
+				.requestMatchers("/notices","/contact","/error","/register", "/invalidSession","/exporedUrl").permitAll());
 		http.formLogin(withDefaults());
 		http.httpBasic(hbc -> hbc.authenticationEntryPoint(new CustomBasicAuthenicationEntryPoint()));
 		http.exceptionHandling(ehc -> ehc.accessDeniedHandler(new CustomAccessDeniedHandler()));
