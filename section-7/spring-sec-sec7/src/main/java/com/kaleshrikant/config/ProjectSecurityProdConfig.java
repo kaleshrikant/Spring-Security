@@ -1,5 +1,6 @@
 package com.kaleshrikant.config;
 
+import com.kaleshrikant.exceptionhandeling.CustomAccessDeniedHandler;
 import com.kaleshrikant.exceptionhandeling.CustomBasicAuthenicationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,6 +32,7 @@ public class ProjectSecurityProdConfig {
 				.requestMatchers("/notices","/contact","/error","/register").permitAll());
 		http.formLogin(withDefaults());
 		http.httpBasic(hbc -> hbc.authenticationEntryPoint(new CustomBasicAuthenicationEntryPoint()));
+		http.exceptionHandling(ehc -> ehc.accessDeniedHandler(new CustomAccessDeniedHandler()));
 		return http.build();
 	}
 
